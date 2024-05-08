@@ -28,6 +28,11 @@ class JogarActivity : AppCompatActivity() {
             papelBt.setOnClickListener { jogarComUm("Papel", winnerTv) }
             tesouraBt.setOnClickListener { jogarComUm("Tesoura", winnerTv) }
         }
+        if (qntdBots == 2){
+            pedraBt.setOnClickListener { jogarComDois("Pedra", winnerTv) }
+            papelBt.setOnClickListener { jogarComDois("Papel", winnerTv) }
+            tesouraBt.setOnClickListener { jogarComDois("Tesoura", winnerTv) }
+        }
     }
 
     private fun jogarComUm(escolhaJogador: String, saidaResultado: TextView) {
@@ -55,31 +60,39 @@ class JogarActivity : AppCompatActivity() {
         val escolhaBotUm = opcoes[Random.nextInt(opcoes.size)]
         val escolhaBotDois = opcoes[Random.nextInt(opcoes.size)]
 
-        val result = when {
 
-            else -> "Você perdeu!"
-        }
+        var pontoBotum = quemGanha(escolhaBotUm,escolhaBotDois) + quemGanha(escolhaBotUm,escolhaJogador)
+        var pontoBotdois = quemGanha(escolhaBotDois, escolhaBotUm) + quemGanha(escolhaBotDois,escolhaJogador)
+        var pontoJogador = quemGanha(escolhaJogador,escolhaBotUm) + quemGanha(escolhaJogador,escolhaBotDois)
+
+        var result = if (pontoJogador == pontoBotum && pontoJogador == pontoBotdois) "Empate entre os 3"
+        else if (pontoJogador > pontoBotum && pontoJogador > pontoBotdois) "Você Venceu"
+        else if (pontoBotum > pontoJogador && pontoBotum > pontoBotdois) "Bot 1 Venceu"
+        else if (pontoBotdois > pontoJogador && pontoBotdois > pontoBotum) "Bot 2 Venceu"
+        else if (pontoBotum == pontoBotdois) "Bot 1 e 2 empataram"
+        else if (pontoBotum == pontoJogador) "Você empatou com o Bot 1"
+        else "Voce empatou com bot 2"
 
         val resultado = "Jogador $escolhaJogador | Bot 1 $escolhaBotUm | Bot 2 $escolhaBotDois \n |$result|"
         saidaResultado.text = resultado
     }
 
     private fun quemGanha(escolhaUm: String, escolhaDois: String): Int {
-        if (escolhaUm == escolhaDois) return 2
+        if (escolhaUm == escolhaDois) return 0
         if (escolhaUm == "Tesoura"){
             if (escolhaDois == "Papel") return 1
-            if (escolhaDois == "Pedra") return 0
+            if (escolhaDois == "Pedra") return -1
         }
 
         if (escolhaUm == "Papel"){
             if (escolhaDois == "Pedra") return 1
-            if (escolhaDois == "Tesoura") return 0
+            if (escolhaDois == "Tesoura") return -1
         }
 
         if (escolhaUm == "Pedra"){
             if (escolhaDois == "Tesoura") return 1
-            if (escolhaDois == "Papel") return 0
+            if (escolhaDois == "Papel") return -1
         }
-        return -1
+        return -9
     }
 }
