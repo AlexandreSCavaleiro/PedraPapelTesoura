@@ -63,4 +63,23 @@ class JogarActivity : AppCompatActivity() {
         val resultado = "Jogador $escolhaJogador | Bot 1 $escolhaBotUm | Bot 2 $escolhaBotDois \n |$result|"
         saidaResultado.text = resultado
     }
+
+    private fun quemGanha(escolhaUm: String, escolhaDois: String): Int {
+        if (escolhaUm == escolhaDois) return 2
+        if (escolhaUm == "Tesoura"){
+            if (escolhaDois == "Papel") return 1
+            if (escolhaDois == "Pedra") return 0
+        }
+
+        if (escolhaUm == "Papel"){
+            if (escolhaDois == "Pedra") return 1
+            if (escolhaDois == "Tesoura") return 0
+        }
+
+        if (escolhaUm == "Pedra"){
+            if (escolhaDois == "Tesoura") return 1
+            if (escolhaDois == "Papel") return 0
+        }
+        return -1
+    }
 }
