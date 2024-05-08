@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/winnerTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Escolha um:"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/pedraBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pedra"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/winnerTv"
+        app:layout_constraintEnd_toStartOf="@id/papelBt"/>
+
+    <Button
+        android:id="@+id/papelBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="papel"
+        app:layout_constraintStart_toEndOf="@id/pedraBt"
+        app:layout_constraintTop_toBottomOf="@id/winnerTv"
+        app:layout_constraintEnd_toStartOf="@id/tesouraBt"/>
+
+    <Button
+        android:id="@+id/tesouraBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="papel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/papelBt"
+        app:layout_constraintTop_toBottomOf="@id/winnerTv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
